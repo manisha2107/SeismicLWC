@@ -1,0 +1,27 @@
+<template>
+    
+    <a class="slds-button slds-button_neutral">SSO Login</a>
+    <a class="slds-button slds-button_outline-brand">Non-SSO Login</a>
+
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id-1">
+          <abbr class="slds-required" title="required">* </abbr>Username</label>
+        <div class="slds-form-element__control">
+          <input type="text" id="username" data-id = "username" required="" value ={username} onchange ={handleOnChange} class="slds-input" />
+        </div>
+      </div>
+
+      
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id-1">
+          <abbr class="slds-required" title="required">* </abbr>Password</label>
+        <div class="slds-form-element__control">
+          <input type="password" id="password"  data-id = "password" required="" value={password} onchange ={handleOnChange} class="slds-input" />
+        </div>
+      </div>
+
+
+      <button class="slds-button slds-button_brand" onclick={handleAuthentication}>Authorize</button>
+
+</template>

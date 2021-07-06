@@ -31,8 +31,8 @@ public class SeismicContentAPICallout {
     @AuraEnabled
     public static void CallBatchForCM_URL(String CampaignId){
         
-        Batch_Seismic_CM_URL batch = new Batch_Seismic_CM_URL('7015e000000Hyr9AAC');
-		Id batchId = Database.executeBatch(batch);
+        Batch_Seismic_CM_URL batch = new Batch_Seismic_CM_URL('7015e0000012OUQAA2');
+		 Database.executeBatch(batch , 10);
         
     }
 }
