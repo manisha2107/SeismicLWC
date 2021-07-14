@@ -1,0 +1,9 @@
+.hide-class{
+
+    display:none;
+  }
+
+  lightning-input.slds-form-element.addrequired .slds-input{
+  border: var(--lwc-borderWidthThin,1px) solid var(--sds-c-input-color-border, var(--lwc-colorBorderInput,rgb(234, 0, 30))) !important;
+    border-color: #ea001e!important;
+  }

@@ -1,7 +1,27 @@
 <template>
     
-    <a class="slds-button slds-button_neutral">SSO Login</a>
-    <a class="slds-button slds-button_outline-brand">Non-SSO Login</a>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          
+          <span class="slds-icon_container slds-icon-standard-account" title="Login">
+            <lightning-button-icon icon-name="utility:user"  alternative-text="login" title="login" aria-hidden="true" ></lightning-button-icon>
+          <span class="slds-assistive-text">account</span>
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+             <span>Login</span>
+           
+          </h2>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body slds-card__body_inner">
+
+      <a class="slds-button slds-button_neutral" onclick={handleSSOLogin}>SSO Login</a>
+    <a class="slds-button slds-button_outline-brand" onclick={handleNonSSOLogin}>Non-SSO Login</a>
 
 
     <div class="slds-form-element">
@@ -22,6 +42,20 @@
       </div>
 
 
-      <button class="slds-button slds-button_brand" onclick={handleAuthentication}>Authorize</button>
+    </div>
+    <footer class="slds-card__footer">
+      
+      <template if:true={isNonSSO}>
+        <button class="slds-button slds-button_brand" onclick={handleAuthentication}>Authorize</button>
 
+      </template>
+      <template if:false={isNonSSO}>
+           <button class="slds-button slds-button_brand" onclick={redirectToSSO}>Authenticate</button>
+      </template>
+    </footer>
+  </article>
+
+    
+
+     
 </template>

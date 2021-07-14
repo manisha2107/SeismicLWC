@@ -12,348 +12,339 @@ Ver   Date         Author                               Modification
 
 <template>
 
-<template if:true={screen1}>  
+  <template if:true={isAuthenticated}>
 
-  <article class="slds-card">
-    <div class="slds-form">
-      <div class="slds-form-element slds-form-element_horizontal">
-        <label class="slds-form-element__label" for="horizontal-input-id-01">Allow Download</label>
-        <div class="slds-form-element__control">
-          <lightning-input type="toggle"  name="Downloadtoggle" onclick={allowDownloadfunc}></lightning-input>
+      <template if:true={screen1}>  
+
+      <article class="slds-card">
+          <div class="slds-form">
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-01">Allow Download</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="toggle"  name="Downloadtoggle" onclick={allowDownloadfunc} ></lightning-input>
+              
+            </div>
+            </div>
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-02">Expires On</label>
+              <div class="slds-form-element__control addrequired">
+            
+                <lightning-input class = "" type="date" name="expiryDate" data-id="expiryDate" value={expirationDate} onchange={expiryDateFunc} ></lightning-input>
         
-          <!-- <input type="text" id="horizontal-input-id-01" placeholder="Placeholder text…" class="slds-input" />
-         -->
-        </div>
-      </div>
-      <div class="slds-form-element slds-form-element_horizontal">
-        <label class="slds-form-element__label" for="horizontal-input-id-02">Expires On</label>
-        <div class="slds-form-element__control">
-          <!-- <textarea id="horizontal-input-id-02" placeholder="Placeholder text…" class="slds-textarea"></textarea>
-   -->
-          <lightning-input type="date" name="Expiration Date" onchange={expiryDateFunc} ></lightning-input>
-  
-        </div>
-      </div>
-      <fieldset class="slds-form-element slds-form-element_horizontal">
-        <legend class="slds-form-element__legend slds-form-element__label">Notification</legend>
-        <div class="slds-form-element__control">
-          <div class="slds-col">
-            <lightning-radio-group name="Notification"
-            options={options}
-            value={value}
-            onchange={notificationHandler}
-            type="radio"></lightning-radio-group>
+              </div>
+            </div>
+            <fieldset class="slds-form-element slds-form-element_horizontal">
+              <legend class="slds-form-element__legend slds-form-element__label">Notification</legend>
+              <div class="slds-form-element__control">
+              
+                  <lightning-radio-group name="Notification"
+                  options={options}
+                  value={value}
+                  onchange={notificationHandler}
+                  type="radio" ></lightning-radio-group>
+              
+              </div>
+            </fieldset>
+            <fieldset class="slds-form-element slds-form-element_horizontal">
+              <legend class="slds-form-element__legend slds-form-element__label">Password Enabled</legend>
+              <div class="slds-form-element__control">
+                <lightning-input type="toggle"  name="PasswordTogglebutton"  onclick={Passwordtogglefunc}></lightning-input>
+        
+              </div>
+            </fieldset>
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-02">Password</label>
+              <div class="slds-form-element__control">
+              
+                <lightning-input type="password" value ={password} name="password" disabled ={passwordtoggle} ></lightning-input>
+               
+              </div>
+            </div>
+                  
+            <div class="slds-p-horizontal_small">
+        
+              <lightning-button variant="brand" label="Next" title="Primary action" onclick={handleClick}></lightning-button>
+              <lightning-button variant="Accept" label="Cancel" title="Primary action" onclick={handleClick2} ></lightning-button>
+            </div>
+
+
           </div>
-        
-        </div>
-      </fieldset>
-      <fieldset class="slds-form-element slds-form-element_horizontal">
-        <legend class="slds-form-element__legend slds-form-element__label">Password Enabled</legend>
-        <div class="slds-form-element__control">
-          <lightning-input type="toggle"  name="PasswordTogglebutton" onclick={Passwordtogglefunc}></lightning-input>
-  
-        </div>
-      </fieldset>
-      <div class="slds-form-element slds-form-element_horizontal">
-        <label class="slds-form-element__label" for="horizontal-input-id-02">Expires On</label>
-        <div class="slds-form-element__control">
-          <!-- <textarea id="horizontal-input-id-02" placeholder="Placeholder text…" class="slds-textarea"></textarea>
-   -->
-          <lightning-input type="date" name="Expiration Date" onchange={expiryDateFunc} ></lightning-input>
-  
-        </div>
-      </div>
-                 
-    </div>
-    
-  </article>
-
-  
-    
-
-  
-<div  class="slds-p-around_none">
-      
-
-  <lightning-card title="Add Contents" icon-name="custom:custom14">
-
-    
-
-    <div class="slds-grid slds-grid_vertical">
-
-
-
-
-    <div class="slds-p-horizontal_small">
-
-    <div class="slds-grid slds-gutters">
-      <div class="slds-float_left">
-      <div class="slds-col">
-        
-          <p><lightning-formatted-text value="Allow download" ></lightning-formatted-text></p>
-         </div>
-       
-      </div>
-      <div class="slds-col">
-        <lightning-input type="toggle"  name="Downloadtoggle" onclick={allowDownloadfunc}></lightning-input>
-        
-      </div>
-
-    </div>
-
-  </div>
-  
-
-  <div class="slds-p-horizontal_small">
-
-
-
-  <div class="slds-grid slds-gutters">
-  <div class="slds-col">
-    
-    <p><lightning-formatted-text value="Expires On"></lightning-formatted-text></p>
-  </div>
-  <div class="slds-col" >
-    <div class="slds-float_left">
-      <lightning-input type="password"  name="password" disabled ={passwordtoggle} ></lightning-input>
-    </div>
-
-    </div>
-
-   
-  <div>
-  </div>
-
-</div>
-</div>
-
-
-<div class="slds-p-horizontal_small"> 
-
-<div class="slds-grid slds-gutters">
-
-
-  <div class="slds-col">
-    <p><lightning-formatted-text value="Notification"></lightning-formatted-text></p>
-  </div>
-  <div class="slds-col">
-    <lightning-radio-group name="Notification"
-    options={options}
-    value={value}
-    onchange={notificationHandler}
-    type="radio"></lightning-radio-group>
-  </div>
-
-  
-  
-
-</div>
-</div>
-
-<div class="slds-p-horizontal_small">  
-<div class="slds-grid slds-gutters">
-  <div class="slds-col">
-    <p><lightning-formatted-text value="Password Enabled"></lightning-formatted-text></p>
-  </div>
-  <div class="slds-col">
-    <lightning-input type="toggle"  name="PasswordTogglebutton" onclick={Passwordtogglefunc}></lightning-input>
-  </div>
-</div>
-</div>
-
-<div class="slds-p-horizontal_small">
-
-
-<div class="slds-grid slds-gutters">
-
-  <div class="slds-col">
-    <p><lightning-formatted-text value="Password"></lightning-formatted-text></p>
-  </div>
-  <div class="slds-col">   
-  <lightning-input type="password"  name="password" disabled ={passwordtoggle} ></lightning-input>
-  </div>
-</div>
-</div>
-
-<div class="slds-col">
-<div class="slds-p-top_medium">
-  <div class="slds-p-horizontal_small">
-
-
-
-  
-       <lightning-button variant="brand" label="Next" title="Primary action" onclick={handleClick}></lightning-button>
-      <lightning-button variant="Accept" label="Cancel" title="Primary action" onclick={handleClick2} ></lightning-button>
-    </div>
-
-  </div>
-</div>
-
-</div>
-    
-  </lightning-card>
-    </div>
-
-
-
-</template>
-
-
-
-<template if:true={screen2}>
-
-<lightning-card title="Add Contents" icon-name="custom:custom14">
-
-
-  <header class="demo-only-element slds-theme_default slds-border_bottom slds-p-around_small slds-text-align_right" style="z-index:1">
-    <button class="slds-button slds-button_icon slds-is-selected slds-button_icon-border-filled slds-button_icon-border" title="Toggle filter panel" aria-expanded="true" aria-controls="example-unique-id-8" aria-pressed="true">
-      <svg class="slds-button__icon" aria-hidden="true">
-        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#filterList"></use>
-      </svg>
-      <span class="slds-assistive-text">Provide description of action</span>
-    </button>
-  </header>
-  <div class="demo-only-element" style="background-color:#fafaf9;position:relative;height:600px;overflow:hidden;display:flex;flex-direction:row-reverse">
-    <div class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-right slds-panel_drawer slds-is-open" aria-hidden="false" id="example-unique-id-8">
-      <div class="slds-panel__header">
-        <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Filter">Filter</h2>
-        <div class="slds-panel__header-actions">
-          <button class="slds-button slds-button_icon slds-button_icon-small slds-panel__close" title="Collapse Filter">
-            <svg class="slds-button__icon" aria-hidden="true">
-              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-            </svg>
-            <span class="slds-assistive-text">Collapse Filter</span>
-          </button>
-        </div>
-      </div>
-      <div class="slds-panel__body">
-        <div class="slds-filters">
-          <ol class="slds-list_vertical slds-list_vertical-space">
-            <li class="slds-item slds-hint-parent">
-              <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
-                <button class="slds-button_reset slds-grow slds-has-blur-focus">
-                  <span class="slds-assistive-text">Edit filter:</span>
-                  <span class="slds-show slds-text-body_small">Show Me</span>
-                  <span class="slds-show">All Products</span>
-                </button>
-              </div>
-            </li>
-          </ol>
-          <h3 class="slds-text-body_small slds-m-vertical_x-small">Matching all these filters</h3>
-          <ol class="slds-list_vertical slds-list_vertical-space">
-            <li class="slds-item slds-hint-parent">
-              <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
-                <button class="slds-button_reset slds-grow slds-has-blur-focus">
-                  <span class="slds-assistive-text">Edit filter:</span>
-                  <span class="slds-show slds-text-body_small">Created Date</span>
-                  <span class="slds-show">equals THIS WEEK</span>
-                </button>
-                <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-small" title="Remove equals THIS WEEK">
-                  <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
-                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
-                  </svg>
-                  <span class="slds-assistive-text">Remove filter: Created Date equals THIS WEEK</span>
-                </button>
-              </div>
-            </li>
-            <li class="slds-item slds-hint-parent">
-              <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
-                <button class="slds-button_reset slds-grow slds-has-blur-focus">
-                  <span class="slds-assistive-text">Edit filter:</span>
-                  <span class="slds-show slds-text-body_small">List Price</span>
-                  <span class="slds-show">greater than &quot;500&quot;</span>
-                </button>
-                <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-small" title="Remove greater than &quot;500&quot;">
-                  <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
-                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
-                  </svg>
-                  <span class="slds-assistive-text">Remove filter: List Price greater than &quot;500&quot;</span>
-                </button>
-              </div>
-            </li>
-          </ol>
-          <div class="slds-filters__footer slds-grid slds-shrink-none">
-            <button class="slds-button_reset slds-text-link">Add Filter</button>
-            <button class="slds-button_reset slds-text-link slds-col_bump-left">Remove All</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="demo-only-content slds-col slds-p-around_medium">
-    
-      <div class="slds-p-horizontal_small">
-        <template for:each={listOfContent} for:item="it">
           
-          <div class="slds-form-element"  key={it.item}>
-            <div class="slds-form-element__control">
-              <lightning-input type="checkbox" label={it.item} data-id={it.rowIndex} checked ={it.checked} name="check2" onchange={handleContentChecked}></lightning-input>
-              <lightning-formatted-url value={it.link} label={it.link} target="_blank" ></lightning-formatted-url>
+        </article> 
+
+        
+          
+
+        
+      <!-- <div  class="slds-p-around_none">
+            
+
+        <lightning-card title="Add Contents" icon-name="custom:custom14">
+
+          <div class="slds-grid slds-grid_vertical">
+            <div class="slds-p-horizontal_small slds-has-dividers_left">
+
+              <div class="slds-grid slds-gutters">
+                
+                  <div class="slds-col slds-size_1-of-2">
+                    
+                      <p><lightning-formatted-text value="Allow download" ></lightning-formatted-text></p>
+                  </div>
+              
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-input  type="toggle"  name="Downloadtoggle" onclick={allowDownloadfunc}></lightning-input>
+                  </div>
+        
+              </div>
+
+              <div class="slds-grid slds-gutters">
+                
+            
+                <div class="slds-col slds-size_1-of-2" >
+                  
+                  <p><lightning-formatted-text value="Expires On"></lightning-formatted-text></p>
+                </div>
+              
+                <div class="slds-col slds-size_1-of-2" >
+                  
+                    <lightning-input type="password"  name="password" disabled ={passwordtoggle} ></lightning-input>
+                
+                <div>
+                </div>
+              
+              
+              
+                </div>
+            
+
+              </div>
+          
+              <div class="slds-grid slds-gutters">
+
+
+                  <div class="slds-col slds-size_1-of-2">
+                    <p><lightning-formatted-text value="Notification"></lightning-formatted-text></p>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-radio-group name="Notification"
+                    options={options}
+                    value={value}
+                    onchange={notificationHandler}
+                    type="radio"></lightning-radio-group>
+                  </div>
+              </div>
+              <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                  <p><lightning-formatted-text value="Password Enabled"></lightning-formatted-text></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                  <lightning-input type="toggle"  name="PasswordTogglebutton" onclick={Passwordtogglefunc}></lightning-input>
+                </div>
+              </div>
+              <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                  <p><lightning-formatted-text value="Password"></lightning-formatted-text></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">   
+                  <lightning-input type="password"  name="password" disabled ={passwordtoggle} ></lightning-input>
+                </div>
+              </div>
+
+              <div class="slds-col">
+              <div class="slds-p-top_medium">
+                <div class="slds-p-horizontal_small">
+
+
+
+                
+                    <lightning-button variant="brand" label="Next" title="Primary action" onclick={handleClick}></lightning-button>
+                    <lightning-button variant="Accept" label="Cancel" title="Primary action" onclick={handleClick2} ></lightning-button>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
-    
-      </template>
-      <div class="slds-p-top_medium"></div>
-       <lightning-button variant="Accept" label="Next" title="Primary action" onclick={openLastScreen} ></lightning-button>
+          
+        </lightning-card>
       </div>
-      
-    </div>
-  </div>
+      -->
 
+
+      </template>
+
+      <template if:true={screen2}>
+
+      <lightning-card title="Add Contents" icon-name="custom:custom14">
+
+
+        <header class="demo-only-element slds-theme_default slds-border_bottom slds-p-around_small slds-text-align_right" style="z-index:1">
+          <button class="slds-button slds-button_icon slds-is-selected slds-button_icon-border-filled slds-button_icon-border" title="Toggle filter panel" aria-expanded="true" aria-controls="example-unique-id-8" aria-pressed="true">
+            <span><lightning-button-icon icon-name="utility:filterList"  alternative-text="add" title="delete" aria-hidden="true" onclick={handleOpen}></lightning-button-icon></span>
+            
+          </button>
+        </header>
+        <div class="demo-only-element" style="background-color:#fafaf9;position:relative;overflow:hidden;display:flex;flex-direction:row-reverse">
+          <div class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-right slds-panel_drawer slds-is-open" aria-hidden="false" id="example-unique-id-8">
+            <div class="slds-panel__header">
+              <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Filter">Filter</h2>
+              <div class="slds-panel__header-actions">
+                <button class="slds-button slds-button_icon slds-button_icon-small slds-panel__close" title="Collapse Filter">
+                  <lightning-button-icon icon-name="utility:close"  for="single-form-element-id-03" alternative-text="Ascending" title="Ascending" onclick={handleClose}></lightning-button-icon></span>
+                </button>
+              </div>
+            </div>
+            <div class="slds-panel__body">
+              <div class="slds-filters">
+              
+                <h3 class="slds-text-body_small slds-m-vertical_x-small">Matching all these filters</h3>
+                <ol class="slds-list_vertical slds-list_vertical-space">
+                  <li class="slds-item slds-hint-parent">
+                    <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
+                      <button class="slds-button_reset slds-grow slds-has-blur-focus">
+                        <span class="slds-assistive-text">Edit filter:</span>
+                        <!-- <span class="slds-show slds-text-body_small">Created Date</span> -->
+                        <span class="slds-show"><lightning-input type="datetime" onchange={handleonChangeFilters} label="Created At Start Time" required=true></lightning-input></span>
+                      </button>
+                      <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-small" title="Remove equals THIS WEEK">
+                        <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Remove filter: Created Date equals THIS WEEK</span>
+                      </button>
+                    </div>
+                  </li>
+                  <li class="slds-item slds-hint-parent">
+                    <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
+                      <button class="slds-button_reset slds-grow slds-has-blur-focus">
+                        <span class="slds-assistive-text">Edit filter:</span>
+                        <span class="slds-show"><lightning-input type="datetime" onchange={handleonChangeFilters} label="Created At End Time" required=true></lightning-input></span>
+                      </button>
+                      <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-small" title="Remove greater than &quot;500&quot;">
+                        <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Remove filter: List Price greater than &quot;500&quot;</span>
+                      </button>
+                    </div>
+                  </li>
+                </ol>
+                <div class="slds-filters__footer slds-grid slds-shrink-none">
+                  <button class="slds-button slds-button_brand" onclick={getContentData}>Save</button>
+                  <button class="slds-button_reset slds-text-link slds-col_bump-left">Remove All</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-only-content slds-col slds-p-around_medium">
+          
+            <div class="slds-p-horizontal_small">
+              <ol class="slds-list_vertical slds-list_vertical-space">
+                <template for:each={listOfContent} for:item="it">
+                <li class="slds-item slds-hint-parent" key={it.item}>
+                    <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
+                      <button class="slds-button_reset slds-grow slds-has-blur-focus">
+                        <span class="slds-assistive-text">Edit filter:</span>
+                        <span class="slds-show slds-text-body_small"> 
+                          <lightning-input type="radio" label={it.item} data-id={it.rowIndex}  name="check2" onchange={handleContentChecked}></lightning-input>
+                          <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">
+                            <a href={it.link}>{it.item}</a>
+                          </h3>
+ 
+                        
+                        </span>
+                        <!-- <span class="slds-show"> <lightning-formatted-url value={it.link} label={it.item} target="_blank" ></lightning-formatted-url>
+                        </span> -->
+                      </button>
+                     
+                    </div>
+                  </li>
+                </template>
+                </ol>
+                <template if:true={showLoading}>
+                  <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+              </template>
+            
+              <div class="slds-clearfix">
+              <div class="slds-float_right ">
+                <div class="slds-p-top_x-small">
+                <button class="slds-button slds-button_brand " onclick={SendData}>Generate</button>
+              </div>
+                </div>
+              </div>
+            
+                <!-- <template for:each={listOfContent} for:item="it">
+                <div class="slds-form-element"  key={it.item}>
+                  <div class="slds-form-element__control">
+                    <lightning-input type="checkbox" label={it.item} data-id={it.rowIndex} checked ={it.checked} name="check2" onchange={handleContentChecked}></lightning-input>
+                    <lightning-formatted-url value={it.link} label={it.link} target="_blank" ></lightning-formatted-url>
+                  </div>
+                </div>
+          
+            </template> -->
+         
+              
+            <!-- <div class="slds-col">
+              <lightning-button variant="brand" label="Generate" title="Primary action" onclick={SendData}></lightning-button>
+          </div> -->
   
-  
-  <div>
-</div>
-  
-  
-</lightning-card>
-</template> 
-
-
-
-<template if:true={screen3}>
-  <lightning-card title="Add Contents" icon-name="custom:custom14">
-
-
- <div class="slds-p-horizontal_small">
-    <div class="slds-col">
-     <lightning-button variant="base" label="Add items" title="Primary action" onclick={Additems}></lightning-button>
-  </div>
-    <ul>
-      <template for:each={listOfSelectedItem} for:item="it">
-        
-        <div class="slds-form-element"  key={it.item}>
-          <div class="slds-form-element__control">
-            <lightning-input type="text"   data-id={it.rowIndex} value={it.item}></lightning-input>
-        
+          </div>
+            
           </div>
         </div>
-  
-      </template>
 
-      <div class="slds-p-top_medium">
+        
+        
+        <div>
+      </div>
+        
+        
+      </lightning-card>
+      </template> 
 
-      <div class="slds-col">
-        <lightning-button variant="brand" label="Generate" title="Primary action" onclick={SendData}></lightning-button>
-     </div>
+      <!-- <template if:true={screen3}>
+        <lightning-card title="Add Contents" icon-name="custom:custom14">
 
-    </div>
-  
-    </ul>
-  </div>
-  
-  </lightning-card>
-      
-          
-  
-  
+
+      <div class="slds-p-horizontal_small">
+          <div class="slds-col">
+          <lightning-button variant="base" label="Add items" title="Primary action" onclick={Additems}></lightning-button>
+        </div>
+          <ul>
+            <template for:each={listOfSelectedItem} for:item="it">
+              
+              <div class="slds-form-element"  key={it.item}>
+                <div class="slds-form-element__control">
+                  <lightning-input type="text"   data-id={it.rowIndex} value={it.item}></lightning-input>
+              
+                </div>
+              </div>
+        
+            </template>
+
+            <div class="slds-p-top_medium">
+
+            <div class="slds-col">
+              <lightning-button variant="brand" label="Generate" title="Primary action" onclick={SendData}></lightning-button>
+          </div>
+
+          </div>
+        
+          </ul>
+        </div>
+        
+        </lightning-card>
+            
+                
+        
+        
+        </template>
+         -->
+
   </template>
-  
+   <template if:false={isAuthenticated}>
+    
+      <c-login-authentication></c-login-authentication>
 
-
-
-
-
-
-
-  
+  </template> 
 </template>
