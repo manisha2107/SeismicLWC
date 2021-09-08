@@ -20,10 +20,10 @@
     </div>
     <div class="slds-card__body slds-card__body_inner">
 
-      <a class="slds-button slds-button_neutral" onclick={handleSSOLogin}>SSO Login</a>
-    <a class="slds-button slds-button_outline-brand" onclick={handleNonSSOLogin}>Non-SSO Login</a>
+      <a class="slds-button slds-button_neutral" data-id= "SSO" onclick={handleSSOLogin}>SSO Login</a>
+    <a class="slds-button slds-button_outline-brand" data-id="Non-SSO" onclick={handleNonSSOLogin}>Non-SSO Login</a>
 
-
+    <template if:true={isNonSSO}>
     <div class="slds-form-element">
         <label class="slds-form-element__label" for="text-input-id-1">
           <abbr class="slds-required" title="required">* </abbr>Username</label>
@@ -41,6 +41,21 @@
         </div>
       </div>
 
+      </template>
+
+  
+      <template if:false={isNonSSO}>
+
+        <div class="slds-form-element">
+        <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">
+                      
+        Click Authenticate to navigate to Login Page
+      </h3>
+      </div>
+
+        <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">{authCode}</h3>
+                      
+      </template>
 
     </div>
     <footer class="slds-card__footer">

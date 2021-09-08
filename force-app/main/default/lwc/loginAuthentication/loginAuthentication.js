@@ -9,6 +9,33 @@ export default class LoginAuthentication extends LightningElement {
     username = '';
     password = '';
     isNonSSO = true;
+    @api token = '';
+    authCode = '';
+
+    parameters = {};
+
+    connectedCallback() {
+
+        this.parameters = this.getQueryParameters();
+        console.log(this.parameters);
+    }
+
+    
+    getQueryParameters() {
+
+        var params = {};
+        var search = location.search.substring(1);
+
+        console.log('Search ::' + search );
+
+        if (search) {
+            params = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', (key, value) => {
+                return key === "" ? value : decodeURIComponent(value)
+            });
+        }
+
+        return params;
+    }
 
     handleOnChange(e){
 
@@ -65,14 +92,37 @@ export default class LoginAuthentication extends LightningElement {
     handleSSOLogin(event){
 
         //console.log('Class list::' + event.classlist);
+        
+        //console.log( 'Class list::'+event.classlist);
+        console.log('Non-SSO');
+        let target = this.template.querySelector('[data-id="Non-SSO"]');
+        console.log('Targets of Non-SSO::' + target);
+        target.classList.add('slds-button_neutral');
+        target.classList.remove('slds-button_outline-brand');
         console.log(event);
+
+        let target1 = this.template.querySelector('[data-id="SSO"]');
+        console.log('Targets of Non-SSO::' + target1);
+        target1.classList.remove('slds-button_neutral');
+        target1.classList.add('slds-button_outline-brand');
+
         this.isNonSSO = false;
     }
 
     handleNonSSOLogin(event){
 
+        console.log('SSO');
         //console.log( 'Class list::'+event.classlist);
+        let target = this.template.querySelector('[data-id="SSO"]');
+        target.classList.add('slds-button_neutral');
+        target.classList.remove('slds-button_outline-brand');
         this.isNonSSO = true;
+
+
+        let target1 = this.template.querySelector('[data-id="Non-SSO"]');
+        console.log('Targets of Non-SSO::' + target1);
+        target1.classList.remove('slds-button_neutral');
+        target1.classList.add('slds-button_outline-brand');
     }
 
     redirectToSSO(event){
@@ -80,7 +130,7 @@ export default class LoginAuthentication extends LightningElement {
         connectSeismic()
         .then(result=>{
 
-            window.location.replace(result);
+            window.open(result, '_blank');
             console.log('Result::' + result );
         })
         .catch(error=>{

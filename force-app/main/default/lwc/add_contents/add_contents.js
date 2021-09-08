@@ -104,7 +104,7 @@ export default class Add_contents extends LightningElement {
       })
 
 
-      let target = this.template.querySelector('.slds-panel_docked.slds-is-open');
+      let target = this.template.querySelector('.slds-panel_docked-right');
       target.classList.add('hide-class');
 
    }
