@@ -41,7 +41,7 @@ global  class Batch_Seismic_CM_URL implements  Database.Batchable<sObject>, Data
         
         if(userCred!=null){
 
-                if(expiresTime<System.Now()){
+                if(expiresTime<System.Now().addSeconds(120)){
                     
                     System.debug('Expires At::' + expiresTime);
                     mapOfResBody = SesimicAccessTokenCallout.pwdFlowCallout(userCred.Username__c, userCred.Password__c);
@@ -121,7 +121,7 @@ global  class Batch_Seismic_CM_URL implements  Database.Batchable<sObject>, Data
         
         if(lstCamMem.size()>0){
             
-            String cronID = System.scheduleBatch(new Batch_Seismic_CM_URL(campaignId, body), 'job example'+iteration++, 1);
+            String cronID = System.scheduleBatch(new Batch_Seismic_CM_URL(campaignId, body), 'Seismic LiveSend Request '+iteration++, 1);
             
         }
         
